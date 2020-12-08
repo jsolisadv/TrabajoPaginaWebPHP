@@ -23,12 +23,57 @@ if (isset($_SESSION['identity'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi primera página web en PHP</title>
     <link rel=StyleSheet href="estilosphp.css" type="text/css" media=screen>
+    <style type="text/css"> 
+    p {
+        color:<?=$color?>; 
+    }    
+</style>
 </head>
 <body>
 
+<!-- SWITCH -->
+<?php
+switch ($_GET['color']) { 
+    case "rojo": 
+        $color="red"; 
+        break; 
+    case "verde": 
+        $color="green"; 
+        break; 
+    case "azul": 
+        $color="blue"; 
+        break; 
+    case "negro": 
+        $color="black"; 
+        break; 
+    default: 
+        $color="black"; 
+} 
+?>
+
+<style type="text/css"> 
+p {  
+    color:<?=$color?>; 
+}    
+</style>
+
+</head>
+<body> 
+
+    <form action="index.php" method="get"> 
+    <!--Cambia el color de los parrafos -->
+    <select name="color"> 
+    <option value="rojo">Rojo</option> 
+    <option value="verde">Verde</option> 
+    <option value="azul">Azul</option> 
+    <option value="negro">Negro</option> 
+    </select> 
+    <input type="submit" value="Cambiar color"> 
+    </form> 
+
         <h1>Bienvenidos a Ammishadai</h1>
         <?php if ($identity==null): ?>
-        <a href="login.php">Ingresa tus datos</a>
+        <a href="login.php">Salir del Sitio </a>
         <?php else: ?>
         <strong>Que gusto tenerte:, <?= $identity ?> con nosotros</strong>
         <a href="logout.php">Salir de la pagina</a>
@@ -39,8 +84,7 @@ if (isset($_SESSION['identity'])) {
             información relacionada con los diferentes lenguajes de programación.
         </p>
 
-
-     <?php
+      <?php
       echo "<p>La primera etapa, aprenderemos sobre PHP, a continuación presentamos la lista de lo iremos aprendiendo.</p>" ;
      ?>
 
@@ -161,4 +205,5 @@ foreach ( $array as $key => $value) {
 
 </body>
 </html>
+
 
